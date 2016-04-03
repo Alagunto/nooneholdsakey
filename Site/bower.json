@@ -1,0 +1,18 @@
+{
+  "name": "NooneHoldsAKey",
+  "main": "public/index.html",
+  "dependencies": {
+    "foundation-sites": "~6.1.2",
+    "motion-ui": "~1.1.0",
+    "foundation-sites": "~6.2.0",
+    "motion-ui": "~1.2.2"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}
