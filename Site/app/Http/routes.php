@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -27,5 +23,15 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', function() {
+        return view('index');
+    });
+
+    Route::get('/analysis', function() {
+        return view('analysis');
+    });
+
+    Route::get('/help-me', function() {
+        return view('help-me');
+    });
 });
