@@ -141,8 +141,8 @@ NHAKReader.prototype.keyDown = function(data) {
             this.readinessController.reset();
             return false;
         }
-        if(this.exact_chars_entered > this.exact_phrase.length)
-            return false;
+        //if(this.exact_chars_entered > this.exact_phrase.length)
+        //    return false;
         var expected = this.exact_phrase[this.exact_chars_entered];
         if(expected != c) {
             return false;
