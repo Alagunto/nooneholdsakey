@@ -65,7 +65,7 @@ function scene_2() {
     });
     formBuilder.providePersonData({
         'name': $('#name').val(),
-        'gender': $('[name=gender]').val(),
+        'gender': $('[name=gender]:checked').val(),
         'name_writing': fioReader.getTransferable()
     });
     familiarPhraseReader = new NHAKReader({
