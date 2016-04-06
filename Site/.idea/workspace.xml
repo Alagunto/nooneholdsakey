@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1489c438-1400-4f0d-b482-443e45a5f5b5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/help-me.js" afterPath="$PROJECT_DIR$/public/js/help-me.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/help-me.blade.php" afterPath="$PROJECT_DIR$/resources/views/help-me.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/nhtk.js" afterPath="$PROJECT_DIR$/public/js/nhtk.js" />
     </list>
     <ignored path="Site.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -108,11 +107,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nhtk.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="nhtk.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/nhtk.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="299" column="23" selection-start-line="299" selection-start-column="23" selection-end-line="299" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.5125448">
+              <caret line="150" column="8" selection-start-line="150" selection-start-column="8" selection-end-line="150" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -150,11 +149,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="help-me.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="help-me.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/help-me.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4548872">
-              <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+            <state vertical-scroll-proportion="-10.153846">
+              <caret line="259" column="9" selection-start-line="259" selection-start-column="9" selection-end-line="259" selection-end-column="9" />
               <folding>
                 <element signature="e#8506#8550#0#HTML" expanded="true" />
                 <element signature="e#8704#8720#0#HTML" expanded="true" />
@@ -189,7 +188,6 @@
         <option value="$PROJECT_DIR$/app/Services/PhrasesService.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_03_26_135507_remove_phrases_table.php" />
         <option value="$PROJECT_DIR$/database/seeds/TextsSeeder.php" />
-        <option value="$PROJECT_DIR$/public/js/nhtk.js" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
@@ -199,6 +197,7 @@
         <option value="$PROJECT_DIR$/public/js/nhak.js" />
         <option value="$PROJECT_DIR$/public/js/help-me.js" />
         <option value="$PROJECT_DIR$/resources/views/help-me.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/nhtk.js" />
       </list>
     </option>
   </component>
@@ -856,14 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/nhtk.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="299" column="23" selection-start-line="299" selection-start-column="23" selection-end-line="299" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/help-me.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -882,13 +873,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/help-me.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4548872">
-          <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+        <state vertical-scroll-proportion="-10.153846">
+          <caret line="259" column="9" selection-start-line="259" selection-start-column="9" selection-end-line="259" selection-end-column="9" />
           <folding>
             <element signature="e#8506#8550#0#HTML" expanded="true" />
             <element signature="e#8704#8720#0#HTML" expanded="true" />
             <element signature="e#10995#11039#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/nhtk.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5125448">
+          <caret line="150" column="8" selection-start-line="150" selection-start-column="8" selection-end-line="150" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
