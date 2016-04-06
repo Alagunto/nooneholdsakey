@@ -1,4 +1,5 @@
 var elixir = require('laravel-elixir');
+require("es6-promise").polyfill()
 
 /*
  |--------------------------------------------------------------------------
