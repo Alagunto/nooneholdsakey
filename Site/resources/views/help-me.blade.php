@@ -15,6 +15,9 @@
             И теперь я хочу узнать, какие бывают почерки. Поможешь мне? <br />
             Это не займёт много времени, честно.
         </p>
+        <div class="callout warning hide" id="go-mobile">
+            Прости, мне нужно, чтобы ты зашёл с компьютера =[
+        </div>
         <button class="button success" id="go">Погнали!</button>
     </div>
 
@@ -247,7 +250,16 @@
     <div id="scene-ok" class="hide scene">
         <h2>Спасибо!</h2>
         <p class="lead">Я всё сохранил, успех =^-^=</p>
-        <p>Ты -- просто чудо =3</p>
+        <p>Ты &mdash; просто чудо =3</p>
+
+        <div class="media-object">
+            <div class="media-object-section">
+                <img src="/img/sweet.jpg" />
+            </div>
+            <div class="media-object-section">
+                <h4>И хорошего тебе дня =3</h4>
+            </div>
+        </div>
     </div>
 
     <div id="scene-error" class="hide scene">

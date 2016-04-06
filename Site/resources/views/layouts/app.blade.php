@@ -31,7 +31,7 @@
                         <li>
                             <a href="#">Инструменты</a>
                             <ul class="menu vertical">
-                                <li><a href="/analysis">Анализ по фразе</a></li>
+                                <li><a href="/analysis">Анализ по фразе (в разработке)</a></li>
                             </ul>
                         </li>
                         <li><a href="/help-me">Анкета</a></li>

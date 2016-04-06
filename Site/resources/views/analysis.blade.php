@@ -3,7 +3,7 @@
 <?php $phrase = \App\Services\TextsService::RandomPhrase(); ?>
 
 @section("content")
-    <h2>Базовый анализ по фразе</h2>
+    <h2>Базовый анализ по фразе (в разработке)</h2>
     <div class="row column small-8 small-offset-2">
         <p class="lead text-center">Ваш почерк будет проанализирован, пока вы печатаете в это поле</p>
     </div>

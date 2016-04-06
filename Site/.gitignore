@@ -8,4 +8,5 @@ Homestead.json
 /public/bower_components
 npm-debug.log
 /public/css
-/.idea/
+.idea/
+.DS_Store
