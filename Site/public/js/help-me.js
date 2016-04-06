@@ -34,11 +34,7 @@ function scene_1() {
     setProgress(15);
 
     var leave_text = "Если ты уйдёшь, твои данные потеряются, и я не смогу проанализировать твой почерк. Уверен, что хочешь уйти?";
-    var leaveFunc = function() {
-        return window.confirm(leave_text);
-    };
 
-    $("#home-link").click(leaveFunc);
     window.onbeforeunload = function() {
         return leave_text;
     };
@@ -296,7 +292,6 @@ function scene_error(data) {
     window.onbeforeunload = function() {
         return "Ты точно скачал файл?";
     };
-    $("#home-link").off('click');
 }
 
 function sendData() {
