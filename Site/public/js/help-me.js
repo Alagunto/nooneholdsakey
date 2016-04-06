@@ -261,11 +261,11 @@ function scene_7() {
     });
 
     $("#save-form").click(function() {
+        $(this).prepend("<p>Отправляю...</p>").remove();
         formBuilder.provideComment({
             "text": $("#comment").val(),
             "writing": commentReader.getTransferable()
         });
-
         sendData();
     })
 }
