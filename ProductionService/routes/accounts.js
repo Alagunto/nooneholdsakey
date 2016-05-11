@@ -50,7 +50,9 @@ router
             var account = new models.account({
                 "id": utils.guid(),
                 "password": req.body.password,
-                "operator": operator_token
+                "operator": operator_token,
+                "avg_retention": null,
+                "avg_between": null
             });
             account.save(function(err) {
                 if(err)
@@ -126,7 +128,8 @@ router
                 event = events[event];
                 data.push({
                     "key": parseInt(event.key),
-                    "ts": parseInt(event.ts)
+                    "ts_down": parseInt(event.ts_down),
+                    "ts_up": parseInt(event.ts_up)
                 });
             }
 
@@ -135,25 +138,27 @@ router
                 account: account
             });
 
-            var scary = logic.newWritingsToAccount(writings, acc);
-            if(scary !== false) {
-                writings.save(function (err) {
-                    if (err) {
-                        res.sendStatus(500);
-                        res.end();
-                        console.error(err);
-                    }
-                    else {
-                        res.sendStatus(201);
-                        res.send(scary);
-                        res.end();
-                    }
-                });
-            } else {
-                res.sendStatus(400);
-                res.end();
-                console.error("Invalid password entrance passed");
-            }
+            console.log(writings);
+            logic.newWritingsToAccount(writings, acc, function(scary) {
+                if(scary !== false) {
+                    writings.save(function (err) {
+                        if (err) {
+                            res.sendStatus(500);
+                            res.end();
+                            console.error(err);
+                        }
+                        else {
+                            res.json({"scary":scary});
+                            res.end();
+                        }
+                    });
+                } else {
+                    res.sendStatus(400);
+                    res.end();
+                    console.error("Invalid password entrance passed");
+                }
+            });
+
         }
     });
 

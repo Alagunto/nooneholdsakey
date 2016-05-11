@@ -34,7 +34,9 @@ var PasswordWriting = mongoose.model('passwordWriting', passwordWritingSchema);
 var accountSchema = mongoose.Schema({
     id: String,
     password: String,
-    operator: String
+    operator: String,
+    avg_retention: [{value: Number}],
+    avg_between: [{value: Number}]
 });
 
 
