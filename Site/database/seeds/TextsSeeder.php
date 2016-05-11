@@ -19,7 +19,7 @@ class TextsSeeder extends Seeder
             "size" => "sentence"
         ]);
         Text::create([
-            "text" => "One for the trouble,
+            "text" => "One for the treble,
                 two for the bass,
                 three to get ready,
                 let's rock this place!",

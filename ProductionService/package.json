@@ -1,0 +1,23 @@
+{
+  "name": "ProductionService",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "async": "^2.0.0-rc.3",
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "jade": "~1.11.0",
+    "log": "^1.4.0",
+    "mongodb": "^2.1.18",
+    "mongoose": "^4.4.14",
+    "morgan": "~1.6.1",
+    "nconf": "^0.8.4",
+    "node-uuid": "^1.4.7",
+    "serve-favicon": "~2.3.0"
+  }
+}

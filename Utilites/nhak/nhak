@@ -1,0 +1,68 @@
+#!/usr/bin/python
+import sys
+reload(sys)  # Reload does the trick!
+sys.setdefaultencoding('UTF8')
+import os
+import sys
+import argparse
+import subprocess
+import re
+import matplotlib.pyplot as plt
+
+actions = sys.argv[1:]
+if len(actions) > 0 and actions[0] == "python":
+  actions = actions[1:]
+dr = os.path.dirname(os.path.abspath(__file__))
+
+if len(actions) == 0:
+  print "Yup?"
+  sys.exit(0)
+
+if actions[0] == "load":
+  if len(actions) == 1:
+    print "What to load?"
+    sys.exit(0)
+
+  files = actions[1]
+  banned_chars = "&|\\;\n\r" # forgot something?
+  files = files.translate(None, banned_chars)
+
+  process = subprocess.Popen(['cat', files], stdout=subprocess.PIPE, universal_newlines=True)
+  data = process.stdout.read()
+
+  process2 = subprocess.Popen(['python', dr + '/loaders/analyser.py'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, universal_newlines=True)
+  answer, error = process2.communicate(input=data) 
+  kind = answer.split()[0]
+
+  human_mode = "-s" in actions or "--human" in actions 
+  if kind == "raw":
+    print data if not human_mode else "Raw data, disable human mode to see it"
+  elif kind == "help-me-form":
+    options = ['python', dr + '/loaders/from_form.py']
+    options.extend(actions[2:])
+    process3 = subprocess.Popen(
+        options,
+        stdin=subprocess.PIPE, 
+        stdout=subprocess.PIPE, 
+        universal_newlines=True
+    )
+    answer, error = process3.communicate(input=data)
+    if human_mode:
+      print "Type of help-me-form"
+    print answer,
+
+if actions[0] in ["speed", "retention", "between_keys"]:
+  options = ['python', dr + '/tools/' + actions[0] + '.py']
+  options.extend(actions[1:])
+  process = subprocess.Popen(options, stdin=subprocess.PIPE, stdout=subprocess.PIPE, universal_newlines=True)
+  data = sys.stdin.read()
+  answer, error = process.communicate(input=data)
+  print answer,
+
+if actions[0] == "show":
+  options = ['python', dr + '/tools/' + actions[0] + '.py']
+  options.extend(actions[1:])
+  process = subprocess.Popen(options, stdin=subprocess.PIPE, stdout=subprocess.PIPE, universal_newlines=True)
+  data = sys.stdin.read()
+  answer, error = process.communicate(input=data)
+  print answer,
