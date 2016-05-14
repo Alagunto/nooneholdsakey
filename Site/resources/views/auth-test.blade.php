@@ -54,6 +54,7 @@
                         </label>
                         <input type="submit" class="button" value="Войти" id="tab-enter-submit" />
                     </form>
+                    <p id="tab-enter-status"></p>
                 </div>
                 <div class="tabs-panel" id="tab-register">
                     <h3>Регистрация</h3>
@@ -194,9 +195,9 @@
                 $.ajax({
                     url: "/auth-test/enter",
                     data: {
-                        "login": $("#tab-register-login").val(),
-                        "password": $("#tab-register-password").val(),
-                        "events": enterPassReader.getTransferable(),
+                        "login": $("#tab-enter-login").val(),
+                        "password": $("#tab-enter-password").val(),
+                        "events": enterPassReader.getTransferable()
                     },
                     type: "post",
                     success: function(result) {

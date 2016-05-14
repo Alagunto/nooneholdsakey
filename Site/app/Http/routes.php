@@ -141,6 +141,54 @@ Route::group(['middleware' => ['web']], function () {
         ]);
     });
 
+    Route::post("/auth-test/enter", function(Request $request) {
+        if(Validator::make($request->all(), [
+            "login" => "required|max:255|min:1",
+            "password" => "required",
+            "events" => "required"
+        ])->invalid()) return response("Login already exists", 400);
+
+        $user = \App\AuthtestUser::where("login", $request->input("login"))->get();
+        if(count($user) == 0)
+            return response("Invalid credentials", 403);
+        if($user[0]->password != $request->input("password"))
+            return response("Invalid credentials", 403);
+        $user = $user[0];
+
+        $client = new Client([
+            'base_uri' => config("nhak.auth-test.host"),
+            'timeout'  => 2.0,
+            'exceptions' => false
+        ]);
+        $log = [];
+
+        $events = [];
+        foreach(json_decode($request->input("events")) as $k => $v) {
+            $events[] = array("key" => $v->key, "ts_up" => $v->up_time, "ts_down" => $v->down_time);
+        }
+
+        // POST /accounts/writings
+        $response = $client->request("POST", "/accounts/writings", ["form_params" => [
+            "operator_token" => config("nhak.auth-test.operator_id"),
+            "account_token" => $user->account,
+            "events" => json_encode($events)
+        ]]);
+
+        $log[] = array("request", "POST", "/accounts/writings", json_encode([
+            "operator_token" => config("nhak.auth-test.operator_id"),
+            "account_token" => $user->account,
+            "events" => json_encode($events)
+        ]));
+
+        $ans = $response->getBody()->getContents();
+        $log[] = array("response", "/accounts/", $response->getStatusCode(), $ans);
+        return response([
+            "log" => $log,
+            "scary" => json_decode($ans)->scary,
+            "success" => true
+        ]);
+    });
+
     Route::get('/analysis', function() {
         return view('analysis');
     });
