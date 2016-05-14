@@ -32,6 +32,11 @@
             background-position: right;
             padding-right: 20px !important;
         }
+
+        #log-wrapper {
+            max-height: 500px;
+            overflow: auto;
+        }
     </style>
     <h2>Тестирование сервиса вторичной авторизации</h2>
     <div class="row">
@@ -65,11 +70,11 @@
                         </label>
                         <label>
                             Пароль:
-                            <input type="password" id="tab-register-password" placeholder="****" class="is-recording" required/>
+                            <input type="text" id="tab-register-password" placeholder="****" class="is-recording" required/>
                         </label>
                         <label>
                             Пароль снова:
-                            <input type="password" id="tab-register-password2" data-equalto="tab-register-password" placeholder="****" class="is-recording" required/>
+                            <input type="text" id="tab-register-password2" data-equalto="tab-register-password" placeholder="****" class="is-recording" required/>
                         </label>
                         <input type="submit" class="button" value="Зарегистрировать" id="tab-register-submit" />
                     </form>
@@ -87,7 +92,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="row callout">
+            <div class="row callout" id="log-wrapper">
                 <h4>Журнал запросов
                     <span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex=1 title="Это запросы, совершаемые этим сайтом к сервису вторичной авторизации, и ответы на них">?</span>
                 </h4>
