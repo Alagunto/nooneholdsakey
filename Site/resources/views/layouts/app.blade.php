@@ -31,7 +31,8 @@
                         <li>
                             <a href="#">Инструменты</a>
                             <ul class="menu vertical">
-                                <li><a href="#">Анализ по фразе (в разработке)</a></li>
+                                <li><a href="/auth-test">Тестирование сервиса вторичной авторизации</a></li>
+                                <li><a href="/analysis">Анализ по фразе (в разработке)</a></li>
                             </ul>
                         </li>
                         <li><a href="/help-me">Анкета</a></li>

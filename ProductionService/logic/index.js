@@ -6,7 +6,7 @@ var models = require('../models');
  */
 function newWritingsToAccount(writings, account, callback) {
     var password = account.password.toUpperCase();
-    var buf = "";
+    var buf = [];
 
     var clean_events = [];
     for(var event in writings.events) {
@@ -15,6 +15,12 @@ function newWritingsToAccount(writings, account, callback) {
         event = writings.events[event];
 
         if(event.key >= 16 && event.key <= 18)
+            continue;
+        if(event.key == 27)
+            continue;
+        if(event.key >= 112 && event.key <= 123)
+            continue;
+        if(event.key == 91 || event.key == 93 || event.key == 9 || event.key == 20)
             continue;
         if(event.key == 8) {
             // Is a backspace
@@ -25,13 +31,33 @@ function newWritingsToAccount(writings, account, callback) {
                 clean_events.pop();
             }
         } else {
-            buf = buf.concat(String.fromCharCode(event.key));
+            buf.push(event.key);//buf.concat(String.fromCharCode(event.key));
             clean_events.push(event);
         }
     }
-    if(buf != password) {
-        callback(false);
-        return false;
+
+    function charIsOnKey(a, b) {
+        var codes = {
+            49: [33],
+            50: [64, 34],
+            51: [35],
+            52: [36],
+            53: [37],
+            54: [94],
+            55: [38],
+            56: [42],
+            57: [40],
+            48: [41],
+            189: [45]
+        };
+        return (a == b) || (codes[b] && codes[b].indexOf(a) !== -1);
+    }
+    for(var i = 0; i < password.length; i++) {
+        if(!charIsOnKey(password.charCodeAt(i), buf[i])) {
+            console.error('Invalid entrance:', password, buf, password.charCodeAt(i), buf[i]);
+            callback(false);
+            return false;
+        }
     }
 
     var retention = [];
@@ -83,7 +109,21 @@ function newWritingsToAccount(writings, account, callback) {
         retention_error /= Math.pow(retention_avg, 2);
         between_error /= Math.pow(between_avg, 2);
 
-        callback(1 - 1 / (retention_error * 0.05 + between_error * 0.2 + 1));
+        var scariness = 1 - 1 / (retention_error * 0.25 + between_error * 0.1 + 1);
+        for(var i = 0; i < password.length; i++) {
+            account.avg_retention[i].value += (retention[i].value - account.avg_retention[i].value) * (1 - scariness) / 3;
+        }
+        for(var i = 0; i < password.length - 1; i++) {
+            account.avg_between[i].value += (between[i].value - account.avg_between[i].value) * (1 - scariness) / 3;
+        }
+        account.save(function(err) {
+            if(err) {
+                console.error("Cannot save account!", err);
+                callback(false);
+            } else {
+                callback(scariness);
+            }
+        });
     } catch(err) {
         console.error("Error: cannot calculate retention and between errors", err);
         callback(false);

@@ -57,8 +57,10 @@ router
             account.save(function(err) {
                 if(err)
                     res.sendStatus(500);
-                else
+                else {
                     res.send(account.id);
+                    console.log(account.id);
+                }
                 res.end();
             });
         }
@@ -73,7 +75,7 @@ router
         }, function(err, ans) {
             if(err) {
                 res.sendStatus(500);
-                res.end();
+
             } else {
                 if(!ans.length) {
                     res.sendStatus(404);
