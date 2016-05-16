@@ -182,6 +182,13 @@ Route::group(['middleware' => ['web']], function () {
 
         $ans = $response->getBody()->getContents();
         $log[] = array("response", "/accounts/", $response->getStatusCode(), $ans);
+        if($response->getStatusCode() == 400) {
+            return response([
+                "log" => $log,
+                "success" => false,
+                "scary" => 1
+            ]);
+        }
         return response([
             "log" => $log,
             "scary" => json_decode($ans)->scary,

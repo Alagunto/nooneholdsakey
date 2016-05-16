@@ -75,7 +75,6 @@ router
         }, function(err, ans) {
             if(err) {
                 res.sendStatus(500);
-
             } else {
                 if(!ans.length) {
                     res.sendStatus(404);

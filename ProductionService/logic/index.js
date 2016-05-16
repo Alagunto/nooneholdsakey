@@ -109,21 +109,25 @@ function newWritingsToAccount(writings, account, callback) {
         retention_error /= Math.pow(retention_avg, 2);
         between_error /= Math.pow(between_avg, 2);
 
-        var scariness = 1 - 1 / (retention_error * 0.25 + between_error * 0.1 + 1);
-        for(var i = 0; i < password.length; i++) {
-            account.avg_retention[i].value += (retention[i].value - account.avg_retention[i].value) * (1 - scariness) / 3;
-        }
-        for(var i = 0; i < password.length - 1; i++) {
-            account.avg_between[i].value += (between[i].value - account.avg_between[i].value) * (1 - scariness) / 3;
-        }
-        account.save(function(err) {
-            if(err) {
-                console.error("Cannot save account!", err);
-                callback(false);
-            } else {
-                callback(scariness);
+        var scariness = 1 - 1 / (retention_error * 0.27 + between_error * 0.8 + 1);
+        if(scariness < 0.5) {
+            for (var i = 0; i < password.length; i++) {
+                account.avg_retention[i].value += (retention[i].value - account.avg_retention[i].value) * (1 - scariness);
             }
-        });
+            for (var i = 0; i < password.length - 1; i++) {
+                account.avg_between[i].value += (between[i].value - account.avg_between[i].value) * (1 - scariness);
+            }
+            account.save(function (err) {
+                if (err) {
+                    console.error("Cannot save account!", err);
+                    callback(false);
+                } else {
+                    callback(scariness);
+                }
+            });
+        } else {
+            callback(scariness);
+        }
     } catch(err) {
         console.error("Error: cannot calculate retention and between errors", err);
         callback(false);
